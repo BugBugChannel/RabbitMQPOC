@@ -1,0 +1,51 @@
+{
+    "users": [
+      {
+       "name": "guest",
+       "password_hash": "rrPBE0Q2At8BbCLKJ9v4NOlw70gIwx3piabEh8KTkBT2fl8q", 
+       "hashing_algorithm": "rabbit_password_hashing_sha256",
+       "tags": "administrator"
+      }
+     ],
+    "permissions": [{
+      "user": "guest",
+      "vhost": "/",
+      "configure": ".*",
+      "write": ".*",
+      "read": ".*"
+    }
+    ],
+    "exchanges": [
+        {
+          "name": "HelloQueue",
+          "vhost": "/",
+          "type": "fanout",
+          "durable": true,
+          "auto_delete": false,
+          "internal": false,
+          "arguments": {}
+        }
+      ],
+      "vhosts":[
+        {"name":"/"}
+    ],
+      "queues": [
+        {
+          "name": "HelloQueue",
+          "vhost": "/",
+          "durable": true,
+          "auto_delete": false,
+          "arguments": {}
+        }
+      ],
+      "bindings": [
+        {
+          "source": "HelloQueue",
+          "vhost": "/",
+          "destination": "HelloQueue",
+          "destination_type": "queue",
+          "routing_key": "Hello",
+          "arguments": {}
+        }
+      ]
+    }
